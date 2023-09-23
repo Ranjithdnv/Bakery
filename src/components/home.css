@@ -1,0 +1,11 @@
+.daily-items {
+  display: flex;
+}
+.daily {
+  /* height: 290px; */
+  min-width: 106%;
+}
+.daily img {
+  /* max-width: 400px; */
+  min-width: 100%;
+}
