@@ -1,20 +1,26 @@
 import React, { useEffect, useState, useRef } from "react";
 import QuestionMarkSharpIcon from "@mui/icons-material/QuestionMarkSharp";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
+import ModeEditRoundedIcon from "@mui/icons-material/ModeEditRounded";
+import ArrowDownwardSharpIcon from "@mui/icons-material/ArrowDownwardSharp";
 import "./home.css";
 function Home() {
+  const [username, setusername] = useState("Ranjith");
+  const [usernamechange, setusernamechange] = useState(false);
   const [lightmodes, setlightmodes] = useState(true);
   const [mainbeach, setmainbeach] = useState([
     "./beach1.jpg",
     "./beach2.jpg",
     "./beach3.jpg",
     "./beach4.jpg",
+    "./beach5.jpg",
   ]);
   const [Others, setOthers] = useState([
     "./beach1.jpg",
     "./beach2.jpg",
     "./beach3.jpg",
     "./beach4.jpg",
+    "./beach5.jpg",
   ]);
   const [TodaySpecial, setTodaySpecial] = useState([
     "./beach1.jpg",
@@ -28,26 +34,70 @@ function Home() {
     "./beach2.jpg",
     "./beach3.jpg",
     "./beach4.jpg",
+    "./beach5.jpg",
   ]);
   return (
     <div className={lightmodes ? "bg-light" : "bg-dark"}>
       <div className="App flex flex-col box-border ">
-        <div className="topbar flex justify-between items-center px-2 mb-8 gap-x-2 border-black border-b-8 h-24 w-full py-2 bg-blue-200">
-          <div className="logo text-4xl bg-blue-300 rounded p-2 flex-2  ">
-            logo
+        <div className="topbar flex justify-between items-center px-2 mb-8 gap-x-2  border-gray-400 border-b-8 h-32 w-full py-2 bg-white">
+          <div className="logo text-4xl rounded p-2 basis-36  flex-1">
+            <img src="./perupalem-logo.png" className="h-28 w-32" alt="" />
           </div>
-          <div className="nameofapp text-4xl font-extrabold rounded p-2 bg-blue-300 flex-1 ">
-            bakery
+          <div className="nameofapp text-4xl font-bold text-blue-300 rounded p-2 flex-1  basis-72    ">
+            perupalem bakery
           </div>
         </div>
-        <div
-          className="lightmode"
-          onClick={() => {
-            setlightmodes(!lightmodes);
-          }}
-        >
-          <LightModeSharpIcon className={lightmodes ? "light" : "dark"} />
+        <div className="username flex justify-around">
+          {" "}
+          <div
+            className="lightmode"
+            onClick={() => {
+              setlightmodes(!lightmodes);
+            }}
+          >
+            <LightModeSharpIcon className={lightmodes ? "light" : "dark"} />
+          </div>
+          <div
+            className={
+              !usernamechange
+                ? "name text-orange-300 text-2xl font-bold"
+                : "hidden"
+            }
+          >
+            {username}
+          </div>
+          <div
+            onClick={() => {
+              setusernamechange(!usernamechange);
+            }}
+          >
+            {" "}
+            <ModeEditRoundedIcon className="modeedit" />
+          </div>
+          <div className={usernamechange ? "changename" : "hidden"}>
+            <input
+              className="text-orange-400 text-center rounded   active:outline outline-orange-400 outline-2 outline-offset-2 "
+              type="text"
+              value={username}
+              onChange={(e) => {
+                setusername(e.target.value);
+              }}
+            />
+          </div>
         </div>
+        <div className="m-1 my-2 font-semibold text-gray-500">
+          Hi mr {username} , if you are planning to go to perupalem beach then
+          you came to right places
+        </div>
+        <div>
+          {" "}
+          <ul class="list-disc list-inside  text-left m-2  ml-36  font-semibold text-gray-400">
+            <li>ican help for your best experience </li>{" "}
+            <li>leave food planning to me</li>{" "}
+            <li>i will suggest , if the weather is good or bad</li>
+          </ul>
+        </div>
+
         <div className="main-box ">
           <div className="userbg-green-200  "></div>
           <div className="details capitalize flex justify-around shadow-2xl m-4 bg-green-200 border-2 p-4 ">
@@ -64,7 +114,8 @@ function Home() {
               <div className="font-medium text-slate-600">Ranjith</div>
             </details>{" "}
           </div>
-          <div className="text-xl font-semibold">Today special</div>
+          <div className="text-xl font-semibold">Today special</div>{" "}
+          <ArrowDownwardSharpIcon className="arrowdown text-green-300" />
           <div className="today-special h-80 overflow-scroll  shadow-2xl p-4 m-4   border-sky-100 border-2">
             {TodaySpecial.map((images) => (
               <div>
@@ -89,7 +140,8 @@ function Home() {
               </div>
             ))}
           </div>
-          <div className="text-xl font-semibold">Foods Available for you</div>
+          <div className="text-xl font-semibold">Foods Available for you</div>{" "}
+          <ArrowDownwardSharpIcon className="arrowdown text-green-300" />
           <div className="daily-items shadow-2xl  m-4 rounded-sm  w-fill  overflow-scroll bg-white  border-sky-100 border-2">
             {TodaySpecial.map((images) => (
               <div className="daily w-84  object-cover h-96 ">
@@ -101,6 +153,10 @@ function Home() {
               </div>
             ))}
           </div>
+          <div className="othershops text-xl font-semibold">
+            Foods from other shops
+          </div>{" "}
+          <ArrowDownwardSharpIcon className="arrowdown text-green-300" />
           <div className="items-others p-4 m-4 shadow-2xl border-sky-100 border-2">
             items
           </div>
