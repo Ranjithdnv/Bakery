@@ -9,3 +9,17 @@
   /* max-width: 400px; */
   min-width: 100%;
 }
+.light {
+  color: rgb(0, 0, 0);
+}
+.dark {
+  color: rgb(255, 255, 255);
+}
+.bg-dark {
+  background-color: black;
+  color: white;
+}
+.bg-light {
+  background-color: aliceblue;
+  color: rgb(0, 0, 0);
+}
