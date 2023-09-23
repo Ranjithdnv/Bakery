@@ -120,7 +120,7 @@ function Home() {
             {TodaySpecial.map((images) => (
               <div>
                 {" "}
-                <div className="my-2 w-full object-contain bg-cover  border-sky-100 ">
+                <div className="my-2 w-full object-contain bg-cover rounded-lg  overflow-hidden  border-sky-100 ">
                   <img
                     src={images}
                     className=" w-full object-contain "
@@ -142,9 +142,9 @@ function Home() {
           </div>
           <div className="text-xl font-semibold">Foods Available for you</div>{" "}
           <ArrowDownwardSharpIcon className="arrowdown text-green-300" />
-          <div className="daily-items shadow-2xl  m-4 rounded-sm  w-fill  overflow-scroll bg-white  border-sky-100 border-2">
+          <div className="daily-items shadow-2xl  m-4 rounded-sm  w-fill  overflow-scroll border-sky-100 border-2">
             {TodaySpecial.map((images) => (
-              <div className="daily w-84  object-cover h-96 ">
+              <div className="daily w-84  object-cover rounded-lg  overflow-hidden m-4 h-96 ">
                 <img
                   src={images}
                   className=" w-84  object-cover h-96 bg-cover "
