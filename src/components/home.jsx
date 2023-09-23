@@ -60,7 +60,9 @@ function Home() {
           <div
             className={
               !usernamechange
-                ? "name text-orange-300 text-2xl font-bold"
+                ? lightmodes
+                  ? "text-orange-300  name text-2xl font-bold"
+                  : "dark  text-2xl font-bold"
                 : "hidden"
             }
           >
@@ -72,7 +74,7 @@ function Home() {
             }}
           >
             {" "}
-            <ModeEditRoundedIcon className="modeedit" />
+            <ModeEditRoundedIcon className={lightmodes ? "modeedit" : ""} />
           </div>
           <div className={usernamechange ? "changename" : "hidden"}>
             <input
