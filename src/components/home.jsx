@@ -55,7 +55,7 @@ function Home() {
             </details>
           </div>
           <div>Today special</div>
-          <div className="today-special h-72 overflow-scroll  shadow-2xl p-4 m-4  bg-blue-100 border-sky-100 border-2">
+          <div className="today-special h-80 overflow-scroll  shadow-2xl p-4 m-4  bg-blue-100 border-sky-100 border-2">
             {TodaySpecial.map((images) => (
               <div>
                 {" "}
@@ -131,7 +131,6 @@ function Home() {
                 {Others.map((images) => (
                   <div>
                     {" "}
-                    t
                     <img src={images} alt="" />
                   </div>
                 ))}
