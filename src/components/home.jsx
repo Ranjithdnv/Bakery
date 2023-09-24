@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import QuestionMarkSharpIcon from "@mui/icons-material/QuestionMarkSharp";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ModeEditRoundedIcon from "@mui/icons-material/ModeEditRounded";
@@ -36,26 +37,46 @@ function Home() {
     "./beach4.jpg",
     "./beach5.jpg",
   ]);
+  const navi = useNavigate();
+  const newxnew = () => {
+    const a = username;
+    if (a === "kumar") {
+      navi("/dash");
+    }
+  };
   return (
     <div className={lightmodes ? "bg-light" : "bg-dark"}>
       <div className="App flex flex-col box-border ">
         <div className="topbar flex justify-between items-center px-2 mb-8 gap-x-2  border-gray-400 border-b-8 h-32 w-full py-2 bg-white">
-          <div className="logo text-4xl rounded p-2 basis-36  flex-1">
+          <div
+            onClick={newxnew}
+            className="logo text-4xl rounded p-2 basis-36  flex-1"
+          >
             <img src="./perupalem-logo.png" className="h-28 w-32" alt="" />
           </div>
           <div className="nameofapp text-4xl font-bold text-blue-300 rounded p-2 flex-1  basis-72    ">
             perupalem bakery
           </div>
         </div>
-        <div className="username flex justify-around">
+
+        <div className="username relative flex justify-around group">
           {" "}
-          <div
-            className="lightmode"
-            onClick={() => {
-              setlightmodes(!lightmodes);
-            }}
-          >
-            <LightModeSharpIcon className={lightmodes ? "light" : "dark"} />
+          <div>
+            <div className="changemode absolute  font-mono rounded-lg border-2 px-2 border-green-400 transition-all   duration-100 ease-linear text-slate-400 -top-6  left-20 opacity-0 group-hover:opacity-100">
+              change mode
+            </div>
+            <div
+              className="lightmode  "
+              onClick={() => {
+                setlightmodes(!lightmodes);
+              }}
+            >
+              <LightModeSharpIcon
+                className={
+                  lightmodes ? "light stroke-yellow-200  stroke-1" : "dark "
+                }
+              />
+            </div>
           </div>
           <div
             className={
@@ -93,7 +114,7 @@ function Home() {
         </div>
         <div>
           {" "}
-          <ul class="list-disc list-inside  text-left m-2  ml-36  font-semibold text-gray-400">
+          <ul class="list-disc list-inside  text-left m-2  ml-12  font-semibold text-gray-400">
             <li>ican help for your best experience </li>{" "}
             <li>leave food planning to me</li>{" "}
             <li>i will suggest , if the weather is good or bad</li>
@@ -118,7 +139,7 @@ function Home() {
           </div>
           <div className="text-xl font-semibold">Today special</div>{" "}
           <ArrowDownwardSharpIcon className="arrowdown text-green-300" />
-          <div className="today-special h-80 overflow-scroll  shadow-2xl p-4 m-4   border-sky-100 border-2">
+          <div className="today-special h-96 overflow-scroll  shadow-2xl p-4 m-4   border-sky-100 border-2 md:min-h-[40rem]  lg:min-h-[40rem]">
             {TodaySpecial.map((images) => (
               <div>
                 {" "}
@@ -144,12 +165,12 @@ function Home() {
           </div>
           <div className="text-xl font-semibold">Foods Available for you</div>{" "}
           <ArrowDownwardSharpIcon className="arrowdown text-green-300" />
-          <div className="daily-items shadow-2xl  m-4 rounded-sm  w-fill  overflow-scroll border-sky-100 border-2">
+          <div className="daily-items shadow-2xl  m-4 rounded-sm  w-fill  overflow-scroll border-sky-100 border-2  lg:min-h-[40rem] md:min-h-[40rem]">
             {TodaySpecial.map((images) => (
-              <div className="daily w-84  object-cover rounded-lg  overflow-hidden m-4 h-96 ">
+              <div className="daily w-84  object-cover rounded-lg  overflow-hidden m-4 h-96 lg:min-h-[40rem] md:min-h-[40rem]">
                 <img
                   src={images}
-                  className=" w-84  object-cover h-96 bg-cover "
+                  className=" w-84  object-cover h-96 bg-cover md:min-h-[40rem] lg:min-h-[40rem]"
                   alt=""
                 />
               </div>

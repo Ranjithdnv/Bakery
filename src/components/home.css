@@ -30,3 +30,14 @@
 .modeedit:hover {
   border-bottom: solid 2px orange;
 }
+
+.changemode {
+  /* opacity: 1;
+  transition: all 1s ease-in-out; */
+}
+.lightmode {
+  color: aqua;
+}
+.lightmode:hover .changemode {
+  opacity: 1;
+}
