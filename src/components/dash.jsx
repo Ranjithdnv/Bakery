@@ -52,12 +52,13 @@ const Dash = () => {
     const data = { item: imgs, cat: Category };
     console.log(Category);
     await axios
-      .post("http://localhost:3003/itemsadd", data, {
+      .post("https://bakeryapi.onrender.com/itemsadd", data, {
         headers: {
           "content-type": "application/x-www-form-urlencoded;charset=utf-8",
         },
       })
       .then((res) => {
+        console.log(res.data);
         console.log(res.data);
       })
       .catch((er) => console.log(er));
