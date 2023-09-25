@@ -65,7 +65,7 @@ const Dash = () => {
   };
   console.log(Category);
   return (
-    <div className="flex justify-center  items-center h-screen  gap-y-24  bg-blue-200   ">
+    <div className="flex justify-center  items-center h-screen  gap-y-24  bg-blue-200 select-none   ">
       <div className="flex justify-center items-center h-auto pt-12 p-8 bg-blue-300 w-96 gap-y-8 shadow-2xl  flex-col">
         <div className="relative transition-all duration-100  ease-linear  group">
           <div className=" flex justify-center items-center">

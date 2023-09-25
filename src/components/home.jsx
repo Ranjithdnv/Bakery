@@ -60,6 +60,9 @@ function Home() {
             if (data.category === "shoot") {
               setShootPlaces((prev) => [...prev, data.item]);
             }
+            if (data.category === "items") {
+              setdaily((prev) => [...prev, data.item]);
+            }
           });
           Contexts.user();
         })
@@ -132,7 +135,7 @@ function Home() {
   console.log(numbercount);
   return (
     <div className={lightmodes ? "bg-light" : "bg-dark"}>
-      <div className="App flex flex-col box-border ">
+      <div className="App flex flex-col box-border   select-none">
         <div className="topbar flex justify-between items-center px-2 mb-8 gap-x-2  border-gray-400 border-b-8 h-32 w-full py-2 bg-white">
           <div
             onClick={newxnew}
