@@ -396,11 +396,11 @@ function Home() {
               <li>i will suggest , if the weather is good or bad</li>
             </ul>
           </div>
-          <div>
-            <form className="px-24 py-6 ">
-              <div className="flex  gap-24 text-left justify-around   items-center ">
+          <div className="border-t-2 border-gray-500 ">
+            <form className="px-24 py-6   max-sm:px-4">
+              <div className="flex  gap-24 text-left justify-around  mb-8   items-center max-sm:gap-4 ">
                 {" "}
-                <details>
+                <details className="rounded-lg bg-green-200 py-4 px-2">
                   <summary className="font-bold ">People coming on </summary>
                   <h1 className="font-medium text-slate-500">
                     {" "}
@@ -413,7 +413,7 @@ function Home() {
                     sunday-coming :{sundaycoming}
                   </div>
                 </details>{" "}
-                <details>
+                <details className="rounded-lg bg-green-200 py-4 px-2">
                   <summary className="font-bold ">Payment Details</summary>
                   <h1 className="font-medium text-slate-500">
                     {" "}
@@ -428,7 +428,7 @@ function Home() {
                 {/* {today.map((time) => time)} */}
               </div>
               <fieldset>
-                <div className="mb-2 text-orange-500  text-lg">
+                <div className="mb-2 text-orange-500   text-2xl">
                   <label htmlFor="">when are you expecting to come </label>
                 </div>{" "}
                 <div className="">
@@ -445,7 +445,7 @@ function Home() {
                       numaaa(e);
                     }}
                   >
-                    <SendOutlinedIcon />
+                    <SendOutlinedIcon className=" text-green-600" />
                   </button>
                 </div>
                 <datalist id="day-list">
@@ -459,7 +459,7 @@ function Home() {
             </form>
           </div>
 
-          <div className="main-box ">
+          <div className="main-box border-t-4 border-gray-500 ">
             <div className="userbg-green-200  "></div>
             <div className="details capitalize flex justify-around shadow-2xl m-4 bg-green-200 border-2 p-4 ">
               <details>
@@ -589,7 +589,6 @@ function Home() {
                   {ShootPlaces.map((images) => (
                     <div>
                       {" "}
-                      t
                       <img src={images} alt="" />
                     </div>
                   ))}
@@ -601,7 +600,6 @@ function Home() {
                   {mainbeach.map((images) => (
                     <div>
                       {" "}
-                      t
                       <img src={images} alt="" />
                     </div>
                   ))}
