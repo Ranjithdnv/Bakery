@@ -440,7 +440,7 @@ function Home() {
                     sunday-coming :{sundaycoming}
                   </div>
                 </details>{" "}
-                <details className="rounded-lg bg-green-200 py-4 px-0">
+                <details className="detail rounded-lg bg-green-200 py-4 px-2  ">
                   <summary className="font-bold text-black  ">
                     Payment Details
                   </summary>
