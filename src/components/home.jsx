@@ -8,6 +8,9 @@ import ModeEditRoundedIcon from "@mui/icons-material/ModeEditRounded";
 import ArrowDownwardSharpIcon from "@mui/icons-material/ArrowDownwardSharp";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import PoolOutlinedIcon from "@mui/icons-material/PoolOutlined";
+import BeachAccessSharpIcon from "@mui/icons-material/BeachAccessSharp";
 import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
 import "./home.css";
 function Home() {
@@ -18,6 +21,8 @@ function Home() {
   const [number, setnumber] = useState("");
   const [datecome, setdatecome] = useState(new Date());
   const [nextweek, setnextweek] = useState(new Date());
+  const [paytm, setpaytm] = useState(false);
+  const [phonepe, setphonepe] = useState(false);
   const [tick, settick] = useState(false);
   const [dates, setdates] = useState();
   const [tomorrowcoming, settomorrowcoming] = useState(0);
@@ -188,6 +193,26 @@ function Home() {
 
     settick(true);
     navigator.clipboard.writeText("16.341907,81.596551");
+    e.preventDefault();
+    return () => clearInterval(interval);
+  };
+  const copytoclipboardphonepe = async (e) => {
+    const interval = setTimeout(() => {
+      setphonepe(false);
+    }, 1000);
+
+    setphonepe(true);
+    navigator.clipboard.writeText(9390083894);
+    e.preventDefault();
+    return () => clearInterval(interval);
+  };
+  const copytoclipboardpaytm = async (e) => {
+    const interval = setTimeout(() => {
+      setpaytm(false);
+    }, 1000);
+
+    setpaytm(true);
+    navigator.clipboard.writeText(9390083894);
     e.preventDefault();
     return () => clearInterval(interval);
   };
@@ -401,7 +426,9 @@ function Home() {
               <div className="flex  gap-24 text-left justify-around  mb-8   items-center max-sm:gap-4 ">
                 {" "}
                 <details className="rounded-lg bg-green-200 py-4 px-2">
-                  <summary className="font-bold ">People coming on </summary>
+                  <summary className="font-bold text-black ">
+                    People coming on{" "}
+                  </summary>
                   <h1 className="font-medium text-slate-500">
                     {" "}
                     today-coming :{todaycoming}
@@ -414,29 +441,94 @@ function Home() {
                   </div>
                 </details>{" "}
                 <details className="rounded-lg bg-green-200 py-4 px-2">
-                  <summary className="font-bold ">Payment Details</summary>
-                  <h1 className="font-medium text-slate-500">
+                  <summary className="font-bold text-black  ">
+                    Payment Details
+                  </summary>
+                  <div className="flex items-center ">
                     {" "}
-                    Phon pay number :9390083894
-                  </h1>
-                  <p className="font-medium text-slate-500">
-                    paytm number :9390083894
-                  </p>
+                    <span>
+                      <img
+                        src="https://imgs.search.brave.com/KNCXZygkMXysSM9J-SxJ0oGOn-6FWUANaMVXfBiQM1w/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dC5icmFuZGZldGNo/LmlvL2lkY0UwT2RH/OGkvaWRqZVFfUDdM/bS5qcGVnP3VwZGF0/ZWQ9MTY2NzU2OTEy/MjQxOA"
+                        width="20px"
+                        height="20px"
+                        alt=""
+                      />{" "}
+                    </span>{" "}
+                    <span
+                      className="font-medium text-slate-500 ml-2"
+                      onClick={copytoclipboardphonepe}
+                    >
+                      {" "}
+                      number : 9390083894{" "}
+                      <span>
+                        {" "}
+                        {phonepe ? (
+                          <DoneRoundedIcon className=" text-green-400" />
+                        ) : (
+                          <ContentCopyRoundedIcon className=" text-blue-600 h-0 w-0" />
+                        )}
+                      </span>
+                    </span>{" "}
+                  </div>{" "}
+                  <div className="flex items-center ">
+                    {" "}
+                    <span>
+                      <img
+                        src="https://imgs.search.brave.com/-lErmknYGvqsyBZzrn-oNFpR1WWtq1LA1cF-TAWxq9U/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4u/aWNvbi1pY29ucy5j/b20vaWNvbnMyLzcz/MC9QTkcvNTEyL3Bh/eXRtX2ljb24taWNv/bnMuY29tXzYyNzc4/LnBuZw"
+                        width="20px"
+                        height="20px"
+                        alt=""
+                      />{" "}
+                    </span>{" "}
+                    <span
+                      className="font-medium text-slate-500 ml-2"
+                      onClick={copytoclipboardpaytm}
+                    >
+                      {" "}
+                      number : 9390083894{" "}
+                      <span>
+                        {" "}
+                        {paytm ? (
+                          <DoneRoundedIcon className=" text-green-400" />
+                        ) : (
+                          <ContentCopyRoundedIcon className=" text-blue-600 h-0 w-0" />
+                        )}
+                      </span>
+                    </span>{" "}
+                  </div>
+                  <a href="https://wa.me/9390083894">
+                    <p className="font-medium text-slate-500">
+                      Whatsapp me{" "}
+                      <span className="ml-4">
+                        <WhatsAppIcon className=" text-blue-400  font-extrabold" />
+                      </span>
+                    </p>
+                  </a>
                   <div className="font-medium text-slate-500"></div>
                 </details>
                 {/* {today} */}
                 {/* {today.map((time) => time)} */}
               </div>
               <fieldset>
-                <div className="mb-2 text-orange-500   text-2xl">
+                <div className="mb-2 text-orange-500  flex justify-center gap-3  text-2xl">
                   <label htmlFor="">when are you expecting to come </label>
+                  <div className="flex ">
+                    {" "}
+                    <span>
+                      <PoolOutlinedIcon className=" text-blue-400" />{" "}
+                    </span>{" "}
+                    <span>
+                      <BeachAccessSharpIcon className=" text-blue-400 rotate-45" />
+                    </span>
+                  </div>
                 </div>{" "}
                 <div className="">
                   <input
+                    placeholder="today"
                     onChange={(e) => {
                       setnumber(e.target.value);
                     }}
-                    className=" rounded opacity-70  text-center pb-2 mr-6  text-green-400 bg-transparent border-2 border-orange-300"
+                    className=" rounded opacity-70  placeholder:text-green-400 text-center pb-2 mr-6  text-green-500 bg-transparent border-2 border-orange-300"
                     list="day-list"
                     type="text"
                   />
@@ -445,7 +537,7 @@ function Home() {
                       numaaa(e);
                     }}
                   >
-                    <SendOutlinedIcon className=" text-green-600" />
+                    <SendOutlinedIcon className=" text-green-500" />
                   </button>
                 </div>
                 <datalist id="day-list">
@@ -463,13 +555,13 @@ function Home() {
             <div className="userbg-green-200  "></div>
             <div className="details capitalize flex justify-around shadow-2xl m-4 bg-green-200 border-2 p-4 ">
               <details>
-                <summary className="font-bold ">Weather</summary>
+                <summary className="font-bold text-black ">Weather</summary>
                 <h1 className="font-medium text-slate-500">good</h1>
                 <p className="font-medium text-slate-500">winds good</p>
                 <div className="font-medium text-slate-500">sunny</div>
               </details>
               <details className="  ">
-                <summary className="font-bold">Details</summary>
+                <summary className="font-bold text-black ">Details</summary>
                 <h1 className="font-medium text-slate-600">Bakery</h1>
                 <p className="font-medium text-slate-600">9390083894</p>
                 <div className="font-medium text-slate-600">Ranjith</div>{" "}
@@ -479,20 +571,20 @@ function Home() {
                 <div className="font-medium text-slate-600">
                   longitude : 81.596551
                 </div>{" "}
-                <span
-                  onClick={copytoclipboard}
-                  className="font-medium text-slate-600 pl-2 pr-2 rounded active:bg-green-300"
-                >
-                  copy here
-                </span>{" "}
-                <span>
+                <div onClick={copytoclipboard}>
                   {" "}
-                  {tick ? (
-                    <DoneRoundedIcon className=" text-green-400" />
-                  ) : (
-                    <ContentCopyRoundedIcon className=" text-blue-600 h-0 w-0" />
-                  )}
-                </span>
+                  <span className="font-medium text-slate-600 pl-2 pr-2 rounded active:bg-green-300">
+                    copy here
+                  </span>{" "}
+                  <span>
+                    {" "}
+                    {tick ? (
+                      <DoneRoundedIcon className=" text-green-400" />
+                    ) : (
+                      <ContentCopyRoundedIcon className=" text-blue-600 h-0 w-0" />
+                    )}
+                  </span>
+                </div>
                 <div className="font-medium text-slate-600">
                   copy and paste in google maps to get my shop directions
                 </div>
