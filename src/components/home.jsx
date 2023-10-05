@@ -6,77 +6,24 @@ import QuestionMarkSharpIcon from "@mui/icons-material/QuestionMarkSharp";
 import LightModeSharpIcon from "@mui/icons-material/LightModeSharp";
 import ModeEditRoundedIcon from "@mui/icons-material/ModeEditRounded";
 import ArrowDownwardSharpIcon from "@mui/icons-material/ArrowDownwardSharp";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
+import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
+import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
 import "./home.css";
 function Home() {
   const [subscription, setSubscription] = useState(null);
 
-  useEffect(() => {
-    // Check if the browser supports service workers and PushManager
-    if ("serviceWorker" in navigator && "PushManager" in window) {
-      navigator.serviceWorker
-        .register("/service-worker.js")
-        .then(async (registration) => {
-          console.log(
-            "Service Worker registered with scope:",
-            registration.scope
-          );
-
-          // Check if the user is already subscribed
-          const existingSubscription =
-            await registration.pushManager.getSubscription();
-
-          if (existingSubscription) {
-            setSubscription(existingSubscription);
-            console.log(subscription);
-          }
-        })
-        .catch((error) => {
-          console.error("Service Worker registration failed:", error);
-        });
-    }
-  }, []);
-  console.log(subscription);
-  const subscribeToPush = async () => {
-    try {
-      const registration = await navigator.serviceWorker.ready;
-      const subscription = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey:
-          "BB0IrPkMRgdZYW0Y120IhjA21jYbSTIybVO8xp0dxdCS-Qgc34dGP9571wwI4wyK7UkRMj3TSjEt2H1NjCN0x7E",
-      });
-      console.log("00000");
-      setSubscription(subscription);
-      // setSubscription({ ...subscription, message: "hhhv" });
-      // Send the subscription object to your server
-      // await fetch("http://localhost:3000/subscribe", {
-      //   method: "POST",
-      //   body: JSON.stringify(subscription),
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // }).then((res) => {
-      //   console.log(res.data);
-      // });
-      await axios
-        .post("https://bakeryapi.onrender.com/subscribe", {
-          subscription: subscription,
-          message: "mess",
-        })
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-      setSubscription(subscription);
-    } catch (error) {
-      console.log("Subscription failed:", error);
-    }
-  };
-  //---------------------------------------------
   const Contexts = useContext(CountContext);
   const [numbercount, setnumbercount] = useState(0);
   const [number, setnumber] = useState("");
+  const [datecome, setdatecome] = useState(new Date());
+  const [nextweek, setnextweek] = useState(new Date());
+  const [tick, settick] = useState(false);
+  const [dates, setdates] = useState();
+  const [tomorrowcoming, settomorrowcoming] = useState(0);
+  const [todaycoming, settodaycoming] = useState(0);
+  const [sundaycoming, setsundaycoming] = useState(0);
+  const [today, settoday] = useState(new Date());
   const [numberid, setnumberid] = useState(
     localStorage.getItem("numberid") || ""
   );
@@ -112,7 +59,50 @@ function Home() {
     "./beach5.jpg",
   ]);
   const navi = useNavigate();
+  useEffect(() => {
+    let addnumbertodate = 0;
+    if (number === "today") {
+      addnumbertodate = 0; //-------------------------------------------------  === string  no state for this problem check condition
+    }
+    if (number === "tomorrow") {
+      addnumbertodate = 1;
+    }
+    if (number === "this sunday") {
+      const dateCopy = new Date();
+      console.log(dateCopy);
+      console.log(
+        "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      );
+      const nextMonday = new Date(
+        dateCopy.setDate(
+          dateCopy.getDate() + ((7 - dateCopy.getDay()) % 7 || 7)
+        )
+      );
+      console.log(dateCopy);
+      console.log(nextMonday);
+      addnumbertodate = dateCopy.getDate();
+      console.log(addnumbertodate);
+    }
 
+    var todayDate = new Date();
+    if (number !== "this sunday") {
+      var datecome = new Date(
+        todayDate.getFullYear(),
+        todayDate.getMonth(),
+        todayDate.getDate() + addnumbertodate
+      );
+    } else {
+      var datecome = new Date(
+        todayDate.getFullYear(),
+        todayDate.getMonth(),
+        addnumbertodate
+      );
+    }
+
+    console.log(number);
+    console.log(datecome);
+    setdatecome(datecome);
+  }, [number]);
   useEffect(() => {
     const getitem = async () => {
       await axios
@@ -138,14 +128,51 @@ function Home() {
     getitem();
     ////////////
     const getitemnumber = async () => {
+      // settodaycoming(0);
       await axios
         .get("https://bakeryapi.onrender.com/howmuchnumber")
         .then((res) => {
           console.log(res.data);
           res.data.map((date) => {
-            if (date.dayofarrival === "tomorrow") {
-              console.log("tomorrow");
+            if (date.dayofarrival) {
+              // console.log("tomorrow");
               setnumbercount((prev) => prev + 1);
+              // ------------------------------------------------------console.log(date.toLocaleString());   to    1/1/12------------------------------
+
+              const dayy = date.date;
+              const datez = new Date(dayy); //----------see this
+
+              let db_date = datez.getDate();
+              let db_day = datez.getDay();
+              console.log(datez);
+              console.log(date.date);
+              console.log(db_date);
+              let todaydate = new Date();
+
+              let dayofdate = todaydate.getDate();
+              console.log(db_date);
+              console.log(dayofdate);
+              if (db_date === dayofdate + 1) {
+                console.log("gggggggggggggggggggggggggggggggggggggggggggg");
+                settomorrowcoming((prev) => prev + 1);
+              }
+              if (db_date === dayofdate) {
+                console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+                // console.log(db_date);
+                settodaycoming((prev) => prev + 1);
+                // console.log(dayofdate);
+              }
+              if (db_date === dayofdate + 2) {
+                settomorrowcoming((prev) => prev + 1);
+              }
+              if (db_day === 0) {
+                console.log(
+                  "11111111111111111111111111111111111111111111111111111111111111"
+                );
+                setsundaycoming((prev) => prev + 1);
+                console.log(db_day);
+                console.log(datez);
+              }
             }
           });
         })
@@ -154,15 +181,27 @@ function Home() {
     getitemnumber();
   }, []);
   //
+  const copytoclipboard = async (e) => {
+    const interval = setTimeout(() => {
+      settick(false);
+    }, 1000);
+
+    settick(true);
+    navigator.clipboard.writeText("16.341907,81.596551");
+    e.preventDefault();
+    return () => clearInterval(interval);
+  };
+  //
   const numaaa = async (e) => {
     e.preventDefault(); //-----------------------------------------------------------------not working function with button ------------------
     console.log("kkkkkkkkk");
     if (!numberid) {
       console.log("kkkkkkkkk");
       if (number) {
-        await axios
+        await axios //https://bakeryapi.onrender.com/numberadd   http://localhost:3003/numberadd
           .post("https://bakeryapi.onrender.com/numberadd", {
             dayofarrival: number,
+            date: datecome,
           })
           .then((res) => {
             console.log(res.data);
@@ -179,6 +218,7 @@ function Home() {
         .put("https://bakeryapi.onrender.com/numberupdate", {
           dayofarrival: number,
           _id: numberid,
+          date: datecome,
         })
         .then((res) => {
           console.log(res.data); //change here --------------------------------------------------------------
@@ -195,24 +235,92 @@ function Home() {
       navi("/dash");
     }
   };
+  // ----------------------------------------------------------------------------------------------------------------------
+  // useEffect(() => {
+  //   // Check if the browser supports service workers and PushManager
+  //   if ("serviceWorker" in navigator && "PushManager" in window) {
+  //     navigator.serviceWorker
+  //       .register("/service-worker.js")
+  //       .then(async (registration) => {
+  //         console.log(
+  //           "Service Worker registered with scope:",
+  //           registration.scope
+  //         );
 
+  //         // Check if the user is already subscribed
+  //         const existingSubscription =
+  //           await registration.pushManager.getSubscription();
+
+  //         if (existingSubscription) {
+  //           setSubscription(existingSubscription);
+  //           console.log(subscription);
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error("Service Worker registration failed:", error);
+  //       });
+  //   }
+  // }, []);
+  // console.log(subscription);
+  // const subscribeToPush = async () => {
+  //   try {
+  //     const registration = await navigator.serviceWorker.ready;
+  //     const subscription = await registration.pushManager.subscribe({
+  //       userVisibleOnly: true,
+  //       applicationServerKey:
+  //         "BB0IrPkMRgdZYW0Y120IhjA21jYbSTIybVO8xp0dxdCS-Qgc34dGP9571wwI4wyK7UkRMj3TSjEt2H1NjCN0x7E",
+  //     });
+  //     console.log("00000");
+  //     setSubscription(subscription);
+  //     // setSubscription({ ...subscription, message: "hhhv" });
+  //     // Send the subscription object to your server
+  //     // await fetch("http://localhost:3000/subscribe", {
+  //     //   method: "POST",
+  //     //   body: JSON.stringify(subscription),
+  //     //   headers: {
+  //     //     "Content-Type": "application/json",
+  //     //   },
+  //     // }).then((res) => {
+  //     //   console.log(res.data);
+  //     // });
+  //     await axios
+  //       .post("http://localhost:3003/subscribe", {
+  //         subscription: subscription,
+  //         message: "mess",
+  //       })
+  //       .then((res) => {
+  //         console.log(res.data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err.message);
+  //       });
+  //     setSubscription(subscription);
+  //   } catch (error) {
+  //     console.log("Subscription failed:", error);
+  //   }
+  // };
+  //---------------------------------------------
   console.log(localStorage.getItem("numberid"));
-
+  console.log(today);
   console.log(TodaySpecial);
   console.log(numbercount);
+  console.log(number);
+  var date = new Date();
+  var now_utc = Date.UTC(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds()
+  );
+
+  console.log(new Date(now_utc));
+  console.log(date.toISOString());
+  console.log(todaycoming);
   return (
     <>
       {" "}
-      <div className="App">
-        <h1>Push Notifications Example</h1>
-        {subscription ? (
-          <p>You are subscribed to push notifications!</p>
-        ) : (
-          <button onClick={subscribeToPush}>
-            Subscribe to Push Notifications
-          </button>
-        )}
-      </div>
       <div className={lightmodes ? "bg-light" : "bg-dark"}>
         <div className="App flex flex-col box-border   select-none">
           <div className="topbar flex justify-between items-center px-2 mb-8 gap-x-2  border-gray-400 border-b-8 h-32 w-full py-2 bg-white">
@@ -222,7 +330,7 @@ function Home() {
             >
               <img src="./perupalem-logo.png" className="h-28 w-32" alt="" />
             </div>
-            <div className="nameofapp text-4xl font-bold text-blue-300 rounded p-2 flex-1  basis-72    ">
+            <div className="nameofapp text-4xl font-bold text-blue-300 rounded p-2 flex-1    basis-72    ">
               perupalem bakery
             </div>
           </div>
@@ -290,16 +398,45 @@ function Home() {
           </div>
           <div>
             <form className="px-24 py-6 ">
+              <div className="flex  gap-24 text-left justify-around   items-center ">
+                {" "}
+                <details>
+                  <summary className="font-bold ">People coming on </summary>
+                  <h1 className="font-medium text-slate-500">
+                    {" "}
+                    today-coming :{todaycoming}
+                  </h1>
+                  <p className="font-medium text-slate-500">
+                    tomorrow-coming :{tomorrowcoming}
+                  </p>
+                  <div className="font-medium text-slate-500">
+                    sunday-coming :{sundaycoming}
+                  </div>
+                </details>{" "}
+                <details>
+                  <summary className="font-bold ">Payment Details</summary>
+                  <h1 className="font-medium text-slate-500">
+                    {" "}
+                    Phon pay number :9390083894
+                  </h1>
+                  <p className="font-medium text-slate-500">
+                    paytm number :9390083894
+                  </p>
+                  <div className="font-medium text-slate-500"></div>
+                </details>
+                {/* {today} */}
+                {/* {today.map((time) => time)} */}
+              </div>
               <fieldset>
                 <div className="mb-2 text-orange-500  text-lg">
                   <label htmlFor="">when are you expecting to come </label>
                 </div>{" "}
-                <div>
+                <div className="">
                   <input
                     onChange={(e) => {
                       setnumber(e.target.value);
                     }}
-                    className=" rounded opacity-70  text-center pb-2  text-green-400 bg-transparent border-2 border-orange-300"
+                    className=" rounded opacity-70  text-center pb-2 mr-6  text-green-400 bg-transparent border-2 border-orange-300"
                     list="day-list"
                     type="text"
                   />
@@ -308,7 +445,7 @@ function Home() {
                       numaaa(e);
                     }}
                   >
-                    send
+                    <SendOutlinedIcon />
                   </button>
                 </div>
                 <datalist id="day-list">
@@ -331,11 +468,34 @@ function Home() {
                 <p className="font-medium text-slate-500">winds good</p>
                 <div className="font-medium text-slate-500">sunny</div>
               </details>
-              <details>
+              <details className="  ">
                 <summary className="font-bold">Details</summary>
                 <h1 className="font-medium text-slate-600">Bakery</h1>
                 <p className="font-medium text-slate-600">9390083894</p>
-                <div className="font-medium text-slate-600">Ranjith</div>
+                <div className="font-medium text-slate-600">Ranjith</div>{" "}
+                <div className="font-medium text-slate-600">
+                  latitude : 16.341907
+                </div>{" "}
+                <div className="font-medium text-slate-600">
+                  longitude : 81.596551
+                </div>{" "}
+                <span
+                  onClick={copytoclipboard}
+                  className="font-medium text-slate-600 pl-2 pr-2 rounded active:bg-green-300"
+                >
+                  copy here
+                </span>{" "}
+                <span>
+                  {" "}
+                  {tick ? (
+                    <DoneRoundedIcon className=" text-green-400" />
+                  ) : (
+                    <ContentCopyRoundedIcon className=" text-blue-600 h-0 w-0" />
+                  )}
+                </span>
+                <div className="font-medium text-slate-600">
+                  copy and paste in google maps to get my shop directions
+                </div>
               </details>{" "}
             </div>
             <div className="text-xl font-semibold">Today special</div>{" "}
