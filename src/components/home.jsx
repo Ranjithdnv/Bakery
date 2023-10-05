@@ -11,6 +11,8 @@ import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import PoolOutlinedIcon from "@mui/icons-material/PoolOutlined";
 import BeachAccessSharpIcon from "@mui/icons-material/BeachAccessSharp";
+import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
+
 import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
 import "./home.css";
 function Home() {
@@ -186,36 +188,7 @@ function Home() {
     getitemnumber();
   }, []);
   //
-  const copytoclipboard = async (e) => {
-    const interval = setTimeout(() => {
-      settick(false);
-    }, 1000);
 
-    settick(true);
-    navigator.clipboard.writeText("16.341907,81.596551");
-    e.preventDefault();
-    return () => clearInterval(interval);
-  };
-  const copytoclipboardphonepe = async (e) => {
-    const interval = setTimeout(() => {
-      setphonepe(false);
-    }, 1000);
-
-    setphonepe(true);
-    navigator.clipboard.writeText(9390083894);
-    e.preventDefault();
-    return () => clearInterval(interval);
-  };
-  const copytoclipboardpaytm = async (e) => {
-    const interval = setTimeout(() => {
-      setpaytm(false);
-    }, 1000);
-
-    setpaytm(true);
-    navigator.clipboard.writeText(9390083894);
-    e.preventDefault();
-    return () => clearInterval(interval);
-  };
   //
   const numaaa = async (e) => {
     e.preventDefault(); //-----------------------------------------------------------------not working function with button ------------------
@@ -325,6 +298,39 @@ function Home() {
   //   }
   // };
   //---------------------------------------------
+  const copytoclipboard = async (e) => {
+    const interval = setTimeout(() => {
+      settick(false);
+      console.log(
+        1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+      );
+    }, 1000);
+
+    settick(true);
+    navigator.clipboard.writeText("16.341907,81.596551");
+    e.preventDefault();
+    return () => clearInterval(interval);
+  };
+  const copytoclipboardphonepe = async (e) => {
+    const interval = setTimeout(() => {
+      setphonepe(false);
+    }, 1000);
+
+    setphonepe(true);
+    navigator.clipboard.writeText(9390083894);
+    e.preventDefault();
+    return () => clearInterval(interval);
+  };
+  const copytoclipboardpaytm = async (e) => {
+    const interval = setTimeout(() => {
+      setpaytm(false);
+    }, 1000);
+
+    setpaytm(true);
+    navigator.clipboard.writeText(9390083894);
+    e.preventDefault();
+    return () => clearInterval(interval);
+  };
   console.log(localStorage.getItem("numberid"));
   console.log(today);
   console.log(TodaySpecial);
@@ -427,7 +433,7 @@ function Home() {
                 {" "}
                 <details className="rounded-lg bg-green-200 py-4 px-2">
                   <summary className="font-bold text-black ">
-                    People coming on{" "}
+                    Coming on{" "}
                   </summary>
                   <h1 className="font-medium text-slate-500">
                     {" "}
@@ -655,15 +661,20 @@ function Home() {
                   <div className=" font-semibold">
                     Do you want me to arrange a dish or drink for your party{" "}
                   </div>
-                  <div className=" font-semibold text-orange-500  text-lg">
-                    <a href="tel:9390083894">Contact me </a>
+                  <div className=" font-semibold text-orange-500  border-2 shadow-2xl border-sky-100 rounded-3xl brightness-100 px-2 mt-2 text-lg">
+                    <a href="tel:9390083894">
+                      Contact me{" "}
+                      <span className="ml-4">
+                        <LocalPhoneRoundedIcon className=" text-blue-400  text-2xl font-extrabold   " />
+                      </span>
+                    </a>
                   </div>
                 </div>
               </div>
               <div>
                 <div>Do you want to buy sea foods ?</div>
                 <div>We have these foods to seel today</div>
-                <div className=" flex justify-center text-orange-500 flex-col ">
+                <div className=" flex justify-center text-orange-500 flex-col">
                   <ul className="pl-8">
                     <li>crab</li>
                     <li>fish</li>
