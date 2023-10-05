@@ -431,7 +431,7 @@ function Home() {
             <form className="px-24 py-6   max-sm:px-0">
               <div className="flex  gap-24 text-left justify-around  mb-8   items-center max-sm:gap-0">
                 {" "}
-                <details className="rounded-lg bg-green-200 py-4 px-2">
+                <details className="detail rounded-lg bg-green-200 py-4 px-2">
                   <summary className="font-bold text-black ">
                     Coming on{" "}
                   </summary>
@@ -661,10 +661,10 @@ function Home() {
                   <div className=" font-semibold">
                     Do you want me to arrange a dish or drink for your party{" "}
                   </div>
-                  <div className=" font-semibold text-orange-500  border-2 shadow-2xl border-sky-100 rounded-3xl brightness-100 px-2 mt-2 text-lg">
+                  <div className=" font-semibold text-orange-500  border-2 shadow-2xl border-sky-100 rounded brightness-100 px-2 mt-2 text-lg">
                     <a href="tel:9390083894">
                       Contact me{" "}
-                      <span className="ml-4">
+                      <span className="ml-4 ">
                         <LocalPhoneRoundedIcon className=" text-blue-400  text-2xl font-extrabold   " />
                       </span>
                     </a>
