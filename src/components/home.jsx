@@ -422,8 +422,8 @@ function Home() {
             </ul>
           </div>
           <div className="border-t-2 border-gray-500 ">
-            <form className="px-24 py-6   max-sm:px-4">
-              <div className="flex  gap-24 text-left justify-around  mb-8   items-center max-sm:gap-4 ">
+            <form className="px-24 py-6   max-sm:px-0">
+              <div className="flex  gap-24 text-left justify-around  mb-8   items-center max-sm:gap-0">
                 {" "}
                 <details className="rounded-lg bg-green-200 py-4 px-2">
                   <summary className="font-bold text-black ">
@@ -440,11 +440,11 @@ function Home() {
                     sunday-coming :{sundaycoming}
                   </div>
                 </details>{" "}
-                <details className="rounded-lg bg-green-200 py-4 px-2">
+                <details className="rounded-lg bg-green-200 py-4 px-0">
                   <summary className="font-bold text-black  ">
                     Payment Details
                   </summary>
-                  <div className="flex items-center ">
+                  <div className="flex items-center  gap-3 ">
                     {" "}
                     <span>
                       <img
@@ -455,7 +455,7 @@ function Home() {
                       />{" "}
                     </span>{" "}
                     <span
-                      className="font-medium text-slate-500 ml-2"
+                      className="font-medium text-slate-500 "
                       onClick={copytoclipboardphonepe}
                     >
                       {" "}
@@ -470,7 +470,7 @@ function Home() {
                       </span>
                     </span>{" "}
                   </div>{" "}
-                  <div className="flex items-center ">
+                  <div className="flex items-center  justify-center gap-3">
                     {" "}
                     <span>
                       <img
@@ -481,7 +481,7 @@ function Home() {
                       />{" "}
                     </span>{" "}
                     <span
-                      className="font-medium text-slate-500 ml-2"
+                      className="font-medium text-slate-500 "
                       onClick={copytoclipboardpaytm}
                     >
                       {" "}
