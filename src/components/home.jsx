@@ -170,7 +170,7 @@ function Home() {
                 // console.log(dayofdate);
               }
               if (db_date === dayofdate + 2) {
-                settomorrowcoming((prev) => prev + 1);
+                // settomorrowcoming((prev) => prev + 1);
               }
               if (db_day === 0) {
                 console.log(
